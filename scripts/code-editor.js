@@ -1,33 +1,39 @@
-const textAreas = $$("textarea")
-const iframeRef = $("iframe")
+const textAreas = $$("textarea");
+const iframeRef = $("iframe");
 
+/**
+ * listen to keyboard events and perform actions
+*/
 class KeyboardEventHandler {
-  
   constructor() {
-    this.actions = new Map()
+    this.actions = new Map();
     this.actions.set("Tab", this.onTab);
   }
 
   handle(key, self) {
-    this.actions.forEach((action, potentialKey)=> {
-      if(key === potentialKey)
-        action(self);
+    this.actions.forEach((action, potentialKey) => {
+      if (key === potentialKey) action(self);
     });
   }
-  
-  has(key) { return this.actions.has(key); }
+
+  has(key) {
+    return this.actions.has(key);
+  }
 
   onTab(self) {
     console.log(self);
     const start = self.selectionStart;
     const end = self.selectionEnd;
-    const tab = (new Array(2).fill(' ')).join('')
-    self.value = self.value.substring(0, start) + tab + self.value.substring(end);
+    const tab = new Array(2).fill(" ").join("");
+    self.value =
+      self.value.substring(0, start) + tab + self.value.substring(end);
     self.selectionStart = self.selectionEnd = start + tab.length;
   }
 }
 
-
+/**
+ * Default boiler-plate code 
+*/
 var code = {
   html: `<main>
   <img src="../images/logo.svg" />
@@ -35,7 +41,7 @@ var code = {
   <div class="grad-text">RANDOMS CODE EDITOR</div>
   <div class="credit">Created by: Zain Ul Din (Fa-2020/BSCS/147)</div>
 </main>`,
-css: `* {
+  css: `* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -94,44 +100,42 @@ main > img {
 `,
   js: `// add your javascript here`,
   construct: function () {
-    return `${this.html}\n<style>${this.css}</style>\n<script>${this.js}</script>`
-  }
-}
+    return `${this.html}\n<style>${this.css}</style>\n<script>${this.js}</script>`;
+  },
+};
 
 const keyboardEventHandler = new KeyboardEventHandler();
-const setIframeSrc = ()=> iframeRef.srcdoc = code.construct();
+const setIframeSrc = () => (iframeRef.srcdoc = code.construct());
 
-setIframeSrc()
+setIframeSrc();
 
-textAreas.forEach(textArea=> {
-  
-  textArea.value = code[textArea.getAttribute("data-lang")]
+textAreas.forEach((textArea) => {
+  textArea.value = code[textArea.getAttribute("data-lang")];
 
   // handles keyboard events
   textArea.addEventListener("keydown", function (e) {
-    if(keyboardEventHandler.has(e.key)) {
-      e.preventDefault()
+    if (keyboardEventHandler.has(e.key)) {
+      e.preventDefault();
       keyboardEventHandler.handle(e.key, this);
     }
   });
-  
-  textArea.oninput = (e)=> {
+
+  textArea.oninput = (e) => {
     const { target } = e;
     const { value } = target;
 
-    switch(target.getAttribute("data-lang")) {
-      case 'html':
-        code = {...code, 'html': value }
-      break;
-      case 'css':
-        code = {...code, 'css': value }
-      break;
-      case 'js':
-        code = {...code, 'js': value }
-      break;
+    switch (target.getAttribute("data-lang")) {
+      case "html":
+        code = { ...code, html: value };
+        break;
+      case "css":
+        code = { ...code, css: value };
+        break;
+      case "js":
+        code = { ...code, js: value };
+        break;
     }
 
     setIframeSrc();
-  }
+  };
 });
-
