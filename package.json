@@ -8,7 +8,7 @@
     "url": "https://github.com/Zain-ul-din/live-code-editor"
   },
   "scripts": {
-    "start": "serve ./index.html"
+    "start": "serve ."
   },
   "dependencies": {
     "serve": "^14.2.1"
