@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "randoms-code-editor",
+    "short_name": "randoms",
     "icons": [
         {
             "src": "/android-chrome-96x96.png",
