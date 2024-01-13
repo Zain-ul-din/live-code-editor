@@ -35,8 +35,7 @@ var code = {
   <div class="grad-text">RANDOMS CODE EDITOR</div>
   <div class="credit">Created by: Zain Ul Din (Fa-2020/BSCS/147)</div>
 </main>`,
-  css: `
-* {
+css: `* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -93,9 +92,7 @@ main > img {
   }
 }
 `,
-  js: `
-    // add your javascript here
-  `,
+  js: `// add your javascript here`,
   construct: function () {
     return `${this.html}\n<style>${this.css}</style>\n<script>${this.js}</script>`
   }
