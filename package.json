@@ -1,0 +1,17 @@
+{
+  "name": "live-code-editor",
+  "author": {
+    "name": "zain-ul-din",
+    "url": "https://github.com/Zain-ul-din"
+  },
+  "repository": {
+    "url": "https://github.com/Zain-ul-din/live-code-editor"
+  },
+  "scripts": {
+    "start": "serve ./index.html"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
+
