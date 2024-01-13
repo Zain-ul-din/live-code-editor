@@ -9,11 +9,11 @@
   --green: rgb(190, 215, 84);
   --text-color: rgba(255,255,255,1);
   --light-text-color: rgba(255,255,255,0.8);
+  --overlay-color: rgba(255,255,255,0.1);
 
   --gray-100: #111;
   --gray-400: #444;
 }
-
 
 * {
   margin: 0;
@@ -49,11 +49,11 @@ main {
   width: 8px;
 }
 
-
 aside {
   width: 30%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 aside > div {
@@ -61,7 +61,14 @@ aside > div {
   display: flex;
   flex-direction: column;
   height: calc(100% / 3);
+  position: relative;
 }  
+
+aside > .h-divider {
+  border: 2px solid var(--gray-400);
+  position: sticky;
+  cursor: row-resize;
+}
 
 aside textarea {
   overflow-y: auto;
@@ -100,7 +107,6 @@ iframe {
   position: relative;
 }
 
-
 *::-webkit-scrollbar {
   width: 2px;
 }
@@ -112,3 +118,5 @@ iframe {
 *::-webkit-scrollbar-track {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+
