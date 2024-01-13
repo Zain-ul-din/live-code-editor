@@ -1,0 +1,26 @@
+:root {
+  /*
+    Source: 
+      https://colorhunt.co/palette/191919750e21e3651dbed754
+  */
+  --black: rgb(25, 25, 25);
+  --maroon: rgb(117, 14, 33);
+  --orange: rgb(227, 101, 29);
+  --green: rgb(190, 215, 84);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--black);
+}
