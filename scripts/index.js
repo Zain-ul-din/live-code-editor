@@ -66,7 +66,7 @@ function handleEditorWindowResize() {
   const labelHeight = $(".lang-label").getBoundingClientRect().height - 4;
 
   editorWindows.forEach((window) => {
-    window.style.minHeight = `${labelHeight}px`;
+    window.style.minHeight = `${labelHeight-2}px`;
   });
 
   const handleResize = (ele) => {
