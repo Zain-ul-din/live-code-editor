@@ -104,8 +104,33 @@ main > img {
   },
 };
 
+/**
+ * runs callback after given delay
+ * @param {*} callback 
+ * @param {*} delay 
+ * @returns 
+*/
+function useDebounce(callback, delay) {
+  let timeoutId = null;
+  return function () {
+    const context = this;
+    const args = arguments;
+
+    if(timeoutId != null) return;
+
+    const runLater = function () {
+      callback.apply(context, args);
+      clearTimeout(timeoutId);
+      timeoutId = null;
+    }
+    
+    timeoutId = setTimeout(runLater, delay);
+  }
+}
+
 const keyboardEventHandler = new KeyboardEventHandler();
 const setIframeSrc = () => (iframeRef.srcdoc = code.construct());
+const debounce = useDebounce(setIframeSrc, 1000);
 
 setIframeSrc();
 
@@ -136,6 +161,7 @@ textAreas.forEach((textArea) => {
         break;
     }
 
-    setIframeSrc();
+    debounce();
+    // setIframeSrc();
   };
 });
