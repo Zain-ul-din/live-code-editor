@@ -38,7 +38,8 @@ var code = {
   html: `<main>
   <img src="../images/logo.svg" />
   <div class="grad-text">WELCOME TO </div>
-  <div class="grad-text">RANDOMS CODE EDITOR</div>
+  <div class="grad-text">LIVE CODE EDITOR</div>
+  <button class="counter-btn">Click to Increment</button>
   <div class="credit">Created by: Zain Ul Din (Fa-2020/BSCS/147)</div>
 </main>`,
   css: `* {
@@ -47,6 +48,10 @@ var code = {
   box-sizing: border-box;
   color: white;
   font-family: sans-serif;
+}
+
+:root {
+  --gradient: linear-gradient(to left, #ecc94b, #48bb78);
 }
 
 body, html {
@@ -64,24 +69,68 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: 35%; left: 33%;
+  width: 30%;
+  height: 30%;
+  background: var(--gradient);
+  filter: blur(200px);
+  opacity: 0.3;
 }
 
 main > img {
   margin-bottom: 2rem;
-  animation: ping-pong 2s linear infinite forwards;
+  animation: ping-pong 5s linear infinite forwards;
 }
 
 .grad-text {
   font-size: 3rem;
   font-weight: 800;
-  background-image: linear-gradient(to left, #ecc94b, #48bb78);
+  background-image: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.counter-btn {
+  color: black;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--gradient);
+  border: 0;
+  font-size: 1em;
+  font-weight: 700;
+  position: relative;
+  isolation: isolate;
+  cursor: pointer;
+}
+
+.counter-btn:hover {
+  opacity: 0.7;
+}
+
+.counter-btn::before {
+  content: '';
+  position: absolute;
+  width: calc(100%);
+  height: calc(100%);
+  background: red;
+  top: 0; left: 0;
+  border-radius: inherit;
+  background: inherit;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.5;
+}
+
 .credit {
-  color: #666;
-  margin-top: 3rem;
+  color: #999;
+  margin-top: 2rem;
 }
 
 @keyframes ping-pong {
@@ -90,7 +139,7 @@ main > img {
   }
   
   50% {
-    transform: translateY(5px);
+    transform: translateY(20px);
   }
   
   100% {
@@ -98,7 +147,17 @@ main > img {
   }
 }
 `,
-  js: `// add your javascript here`,
+  js: `const $ = document.querySelector.bind(document)
+const counterBtn = $(".counter-btn")
+let counter = 0
+
+function incrementCount () {
+  counter += 1
+  counterBtn.textContent = \`\${counter} times clicked!\` 
+}
+
+counterBtn.onclick = incrementCount;
+`,
   construct: function () {
     return `${this.html}\n<style>${this.css}</style>\n<script>${this.js}</script>`;
   },
