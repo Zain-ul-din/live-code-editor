@@ -21,7 +21,6 @@ class KeyboardEventHandler {
   }
 
   onTab(self) {
-    console.log(self);
     const start = self.selectionStart;
     const end = self.selectionEnd;
     const tab = new Array(2).fill(" ").join("");
