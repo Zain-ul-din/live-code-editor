@@ -74,6 +74,8 @@ function handleEditorWindowResize() {
       height = 0;
 
     const handleMouseDown = (e) => {
+      e.preventDefault()
+
       startY = e.clientY - 2; // 2 coming from css. 
         // cuz we have 2px border of hr in css
       height = ele.previousElementSibling.getBoundingClientRect().height;
